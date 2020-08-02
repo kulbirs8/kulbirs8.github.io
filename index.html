@@ -1,9 +1,132 @@
 <!DOCTYPE html>
 <html>
-<body>
+  <head>
+    <meta charset="utf-8">
+    <title> Data Visualization
+    </title>
+	  <script src="https://d3js.org/d3.v4.js"></script>
+	   <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
+      <script src="usa_top_covid_states2.js"></script>
+	
+	  
+    <style type="text/css">
 
-<h1>My First Heading</h1>
-<p>My first paragraph.</p>
+    svg{
+      background: #FBC5B9;
+    }
 
-</body>
+        #tooltip {
+          position: absolute;
+          width: 78px;
+          height: auto;
+          padding: 2% 1%;
+          background-color: white;
+          pointer-events: none;
+        }
+
+        #tooltip.hidden {
+          display: none;
+        }
+
+        #tooltip p {
+          margin: 0;
+          font-family: sans-serif;
+          font-size: 11px;
+          line-height: 12px;
+        }
+		
+        .legend {
+          font: 10px arial, sans-serif
+        }
+        .legend-rect {
+          stroke-width: 1 ;
+          fill: white ;
+          stroke: black
+        }
+
+        .line {
+        fill: none;
+        
+      }
+	   .annotation path {
+      stroke: var(--accent-color);
+      fill: none;
+    }
+
+    .annotation path.connector-arrow, 
+    .annotation path.connector-dot, 
+    .title text, .annotation text {
+      fill: var(--accent-color);
+    }
+
+    .annotation-note-bg {
+      fill: rgba(0, 0, 0, 0);
+    }
+
+    .annotation-note-title {
+      font-weight: bold;
+    }
+	
+	 :root {
+      --accent-color: #808080;
+    }
+	  
+      </style>
+
+   
+    
+  </head>
+  <body style=" margin-top: 0; ">
+<center><b>This is the Narrative visualization show Top 10 USA States affected by COVID-19 cases.</b></center> <hr>
+    <div >
+    
+	  <p><b>Select a option for data visualization for COVID-19:</b></p>
+	  <input type="radio" id="1" name="Case" onclick="total_cases()"> <label for="1">Total COVID-19 Confirmed Cases</label> </br>
+	  <input type="radio" id="2" name="Case" onclick="total_deaths()"> <label for="2">Total COVID-19 Deaths</label> </br>
+	   <p style="margin-left:2.5em"><b>Drill down covid death patients with other conditions:</b></p>
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;   <input type="radio" id="3" name="Case" onclick="death_Diabetes()"> <label for="3">Covid-19 Death Patient % with Diabetes</label> </br>
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;   <input type="radio" id="4" name="Case" onclick="death_heartdisease()"> <label for="4">Covid-19 Death Patient % with heart disease</label> </br>
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;   <input type="radio" id="5" name="Case" onclick="death_hypertension()"> <label for="5">Covid-19 Death Patient % with hypertension</label> </br> 
+      </div>
+
+	  <script>
+      radiobtn = document.getElementById("1");
+      radiobtn.checked = true;
+     </script> 
+
+      <div id="tooltip" class="hidden">
+  			<p><span id="value">100</span></p>
+  		</div>
+      <div id="graph"> </div>
+   
+  
+	  <script>
+	  
+	   const annotations = [
+        {
+          note: {
+            label: "Lockdown start in April.",
+            title: "Reason for cases to slow down "
+          },
+          x: 600,
+          y: 410,
+          dy: 10,
+          dx: 162
+        },
+		{
+          note: {
+            label: "Lockdown ended in June.",
+            title: "Reason for cases to surge again"
+          },
+          x: 950,
+          y: 410,
+          dy: 10,
+          dx: 162
+        }
+        ]
+	
+	  
+	  </script>
+   
+  </body>
 </html>
